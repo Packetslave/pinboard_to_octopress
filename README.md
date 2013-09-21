@@ -12,8 +12,8 @@ How to use:
 
 * get your Pinboard API token (https://pinboard.in/settings/password)
 * save it to a file somewhere secure. Make sure to set sane file permissions.
-* either edit p20.py to point to your token file, or use the --token_file flag
-* run p2o.py from your octopress directory, or use the --octopress flag
+* either edit `p20.py` to point to your token file, or use the `--token_file` flag
+* run `p2o.py` from your octopress directory, or use the `--octopress` flag
 * your new post is ready to preview and publish!
 
 By default, p2o will retrieve the last 7 days of posts. This can be overriden

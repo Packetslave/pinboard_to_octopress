@@ -5,6 +5,7 @@ import cStringIO
 import datetime
 import os
 import re
+import sys
 
 import gflags
 import requests
@@ -47,7 +48,7 @@ DATE = datetime.datetime.strftime(NOW, '%Y-%m-%d')
 TIME = datetime.datetime.strftime(NOW, '%Y-%m-%d %H:%S')
 
 
-def get_posts(days=FLAGS.days):
+def get_posts(days):
     """Download recent posts from Pinboard."""
 
     fromdt = datetime.datetime.strftime(
@@ -159,9 +160,18 @@ def group_posts(parsed):
     return grouped
 
 
-def main():
+def main(argv):
     """Main entry point for the application."""
-    posts = get_posts()
+    try:
+      argv = FLAGS(argv)  # parse flags
+    except gflags.FlagsError, e:
+      print '%s\\nUsage: %s ARGS\\n%s' % (e, sys.argv[0], FLAGS)
+      sys.exit(1)
+
+    posts = get_posts(FLAGS.days)
+    print posts
+    return
+
     parsed = clean_up_posts(posts)
     grouped = group_posts(parsed)
 
@@ -171,6 +181,6 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    main(sys.argv)
 
 

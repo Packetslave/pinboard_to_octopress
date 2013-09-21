@@ -3,6 +3,7 @@
 import collections
 import cStringIO
 import datetime
+import os
 import re
 
 import gflags
@@ -164,7 +165,8 @@ def main():
     parsed = clean_up_posts(posts)
     grouped = group_posts(parsed)
 
-    with open(OUT_FILE % (DATE, DATE), 'w') as post:
+    outfile = os.path.join(FLAGS.octopress, OUT_FILE % (DATE, DATE))
+    with open(outfile, 'w') as post:
         post.write(create_post(grouped))
 
 

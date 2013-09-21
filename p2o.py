@@ -163,15 +163,12 @@ def group_posts(parsed):
 def main(argv):
     """Main entry point for the application."""
     try:
-      argv = FLAGS(argv)  # parse flags
-    except gflags.FlagsError, e:
-      print '%s\\nUsage: %s ARGS\\n%s' % (e, sys.argv[0], FLAGS)
-      sys.exit(1)
+        argv = FLAGS(argv)  # parse flags
+    except gflags.FlagsError, err:
+        print '%s\\nUsage: %s ARGS\\n%s' % (err, sys.argv[0], FLAGS)
+        sys.exit(1)
 
     posts = get_posts(FLAGS.days)
-    print posts
-    return
-
     parsed = clean_up_posts(posts)
     grouped = group_posts(parsed)
 
@@ -182,5 +179,3 @@ def main(argv):
 
 if __name__ == '__main__':
     main(sys.argv)
-
-

@@ -136,16 +136,16 @@ def create_post(grouped):
 
         post.write('\n# %s\n\n' % category)
 
-        for post in grouped[category]:
+        for p in grouped[category]:
             post.write(
                 '* [%s](%s)' % (
-                    post['description'].strip(), post['href'].strip()))
+                    p['description'].strip(), p['href'].strip()))
 
-            if post['extended']:
-                post.write('<br>\nExtended: %s' % post['extended'])
+            if p['extended']:
+                post.write('<br>\nExtended: %s' % p['extended'])
 
-            if post['tags']:
-                post.write('<br>\n_Tags:_ %s' % ', '.join(post['tags']))
+            if p['tags']:
+                post.write('<br>\n_Tags:_ %s' % ', '.join(p['tags']))
 
             post.write('\n')
 
